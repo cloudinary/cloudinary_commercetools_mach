@@ -1,0 +1,21 @@
+openapi: "3.0.1"
+info:
+  title: "clct-api-to-sqs"
+paths:
+  /CloudinaryNotification:
+    post:
+      responses:
+        default:
+          description: "SQS response"
+      x-amazon-apigateway-integration:
+        integrationSubtype: "SQS-SendMessage"
+        credentials:
+          Fn::GetAtt: [clctwritesqsrole, Arn]
+        requestParameters:
+          MessageBody: "$request.body"
+          QueueUrl:
+            Ref: clctqueue
+        payloadFormatVersion: "1.0"
+        type: "aws_proxy"
+        connectionType: "INTERNET"
+x-amazon-apigateway-importexport-version: "1.0"

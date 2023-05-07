@@ -1,0 +1,103 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: HTTP API direct integrations
+
+Parameters:
+  CloudName:
+    Type: String
+  CloudApiKey:
+    Type: String
+  PropertySku:
+    Type: String
+  PropertyPublish:
+    Type: String
+  PropertySort:
+    Type: String
+  AuthUrl:
+    Type: String
+  ClientId:
+    Type: String
+  ApiUrl:
+    Type: String
+  ProjectKey:
+    Type: String
+  CloudApiSecret:
+    Type: String  
+  CtApiSecret:
+    Type: String  
+
+Resources:
+  clctqueue:
+    Type: AWS::SQS::Queue
+
+  clctnotification:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      DefinitionBody:
+        'Fn::Transform':
+          Name: 'AWS::Include'
+          Parameters:
+            Location: './api.yaml'
+          
+  clctwritesqsrole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "apigateway.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: ApiDirectWriteToSQS
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              Action:
+              - sqs:SendMessage
+              Effect: Allow
+              Resource:
+                - !GetAtt clctqueue.Arn
+                
+  clctprocessnotification:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-process"
+      PackageType: Image
+      ImageConfig:
+        Command:
+          - "app.processCloudinaryNotification"
+      Environment:
+        Variables:
+          cloud_name: !Ref CloudName
+          cloud_api_key: !Ref CloudApiKey
+          property_sku: !Ref PropertySku
+          property_publish: !Ref PropertyPublish
+          property_sort: !Ref PropertySort
+          authUrl: !Ref AuthUrl
+          clientId: !Ref ClientId
+          apiUrl: !Ref ApiUrl
+          projectKey: !Ref ProjectKey
+      Policies:
+        - SQSPollerPolicy:
+            QueueName: !GetAtt clctqueue.QueueName
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Sub "${CloudApiSecret}"
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Sub "${CtApiSecret}"
+      Events:
+        SQSTrigger:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt clctqueue.Arn
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./clctprocessnotification
+      DockerTag: v1
+
+Outputs:
+  ApiEndpoint:
+    Description: "HTTP API endpoint URL"
+    Value: !Sub "https://${clctnotification}.execute-api.${AWS::Region}.amazonaws.com/CloudinaryNotification"

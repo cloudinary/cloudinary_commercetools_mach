@@ -1,0 +1,22 @@
+{
+  "name": "cloudinary-ct-run",
+  "version": "1.0.0",
+  "private": true,
+  "description": "cloudinary-ct-run",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-reference/Cloudinary-Webhook-Function.git"
+  },
+  "engines": {
+    "node": ">= 12.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.16.4"
+  }
+}

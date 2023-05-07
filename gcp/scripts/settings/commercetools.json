@@ -1,0 +1,37 @@
+{
+    "Location": "reference.be",
+    "ProjectId": "cloudinary-ct",
+    "Region": "europe-west1",
+
+    "CloudRunName": "cloudinary-ct-dev-run",
+    "CloudRunSubscriberName": "cloudinary-ct-dev-run-sub",
+
+    "Topic": "cloudinary-ct-dev-topic",
+    "PubsubSubscription": "cloudinary-ct-dev-pubsub-sub",
+    "PubsubInvokerSAName": "cloudinary-ct-pubsub-invoker",
+    "PubsubPublisherSAName": "cloudinary-ct-pubsub-publisher",
+
+    "SecretAccessorSAName": "cloudinary-ct-secret-accessor",
+
+    "ApiGatewaySAName": "cloudinary-ct-gateway-manager",
+    "OpenApiSpec": "openapi2-run.yaml",
+    "ApiGatewayConfigId": "cloudinary-ct-gateway-config",
+    "ApiGatewayId": "cloudinary-ct-gateway",
+
+    "RepositoryOwner": "",
+    "Repository": "https://github.com/the-reference/Cloudinary-Webhook-Function",
+    "Branch": "master",
+    
+    "cloud_name": "ddsgmism3",
+    "cloud_api_key": "394948657526364",
+    "cloud_api_secret": "UeWpC5ZL3ANXrK-PsafR-z5B9vU",
+    "property_sku": "commercetools_sku",
+    "property_publish": "commercetools_publish",
+    "property_sort": "sortnumber",
+
+    "authUrl": "https://auth.us-central1.gcp.commercetools.com",
+    "clientId": "td7WFI2gxb7ILd0XS8LcCZIv",
+    "clientSecret": "ipuSX1qwc8OpNKLfnlsVazZnyH_r4Bad",
+    "apiUrl": "https://api.us-central1.gcp.commercetools.com",
+    "projectKey": "cld_dev"
+}

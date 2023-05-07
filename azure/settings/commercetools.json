@@ -1,0 +1,23 @@
+{
+    "Subscription": "TR - Seals - Poc",
+    "ResourceGroup": "rg-cloudinary-ct",
+    "KeyVaultName": "kv-cloudinary-ct9",
+    "ApplicationId": "clct9",
+    "Parameters": "parameters-commercetools.json",
+
+    "cloud_name": "ddsgmism3",
+    "cloud_api_key": "394948657526364",
+    "cloud_api_secret": "UeWpC5ZL3ANXrK-PsafR-z5B9vU",
+    "property_sku": "commercetools_sku",
+    "property_publish": "commercetools_publish",
+    "property_sort": "sortnumber",
+    
+    "ct_asset_type_key": "AssetItemType",
+    "ct_property_sort": "sortNumber",
+
+    "authUrl": "https://auth.us-central1.gcp.commercetools.com",
+    "clientId": "td7WFI2gxb7ILd0XS8LcCZIv",
+    "clientSecret": "ipuSX1qwc8OpNKLfnlsVazZnyH_r4Bad",
+    "apiUrl": "https://api.us-central1.gcp.commercetools.com",
+    "projectKey": "cld_dev"
+}

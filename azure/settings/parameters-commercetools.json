@@ -1,0 +1,155 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "functionApps": {
+      "value": [
+        {
+          "name": "integration"
+        }
+      ]
+    },
+    "apimApis": {
+      "value": [
+        {
+          "name": "integration",
+          "displayName": "Integration",
+          "path": "integration"
+        }
+      ]
+    },
+    "apimApisOperations": {
+      "value": [
+        {
+          "apiName": "integration",
+          "name": "cloudinarynotification",
+          "displayName": "CloudinaryNotification",
+          "method": "POST",
+          "url": "/CloudinaryNotification",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        },
+        {
+          "apiName": "integration",
+          "name": "ctaddasset",
+          "displayName": "CtAddAsset",
+          "method": "POST",
+          "url": "/CtAddAsset",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        },
+        {
+          "apiName": "integration",
+          "name": "ctaddthumbnail",
+          "displayName": "CtAddThumbnail",
+          "method": "POST",
+          "url": "/CtAddThumbnail",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        },
+        {
+          "apiName": "integration",
+          "name": "ctdeleteasset",
+          "displayName": "CtDeleteAsset",
+          "method": "POST",
+          "url": "/CtDeleteAsset",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        },
+        {
+          "apiName": "integration",
+          "name": "ctdeletethumbnail",
+          "displayName": "CtDeleteThumbnail",
+          "method": "POST",
+          "url": "/CtDeleteThumbnail",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        },
+        {
+          "apiName": "integration",
+          "name": "ctgettoken",
+          "displayName": "CtGetToken",
+          "method": "POST",
+          "url": "/CtGetToken",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        },
+        {
+          "apiName": "integration",
+          "name": "ctsetproperties",
+          "displayName": "CtSetProperties",
+          "method": "POST",
+          "url": "/CtSetProperties",
+          "queryParameters": [],
+          "templateParameters": [],
+          "urlPrefix": "func",
+          "path": "integration",
+          "policies": "<policies>\r\n\t<inbound>\r\n\t\t<base />\r\n\t\t<set-backend-service id=\"apim-generated-policy\" backend-id=\"[BACKENDID]\" />\r\n\t</inbound>\r\n\t<backend>\r\n\t\t<base />\r\n\t</backend>\r\n\t<outbound>\r\n\t\t<base />\r\n\t</outbound>\r\n\t<on-error>\r\n\t\t<base />\r\n\t</on-error>\r\n</policies>",
+          "representations": [],
+          "responses": []
+        }
+      ]
+    },
+    "apimProducts": {
+      "value": [
+        {
+          "name": "cloudinary",
+          "displayName": "Cloudinary",
+          "description": "Cloudinary"
+        }
+      ]
+    },
+    "apimProductApis": {
+      "value": [
+        {
+          "product": "cloudinary",
+          "api": "integration"
+        }
+      ]
+    },
+    "apimSubscriptions": {
+      "value": [
+        {
+          "name": "cloudinary",
+          "displayName": "Cloudinary",
+          "product": "cloudinary"
+        }
+      ]
+    },
+    "serviceBusQueues": {
+      "value": [
+        "notifications"
+      ]
+    }
+  }
+}
