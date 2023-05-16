@@ -79,7 +79,7 @@ const searchProductBySku = async (sku, staged, token) => {
     const apiUrl = process.env["apiUrl"]
     const projectKey = process.env["projectKey"]
 
-    const url = `${apiUrl}/${projectKey}/product-projections/search?staged=${staged}&filter=variants.sku:${sku}`
+    const url = `${apiUrl}/${projectKey}/product-projections/search?staged=${staged}&filter=variants.sku:"${sku}"`
     const response = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -99,7 +99,7 @@ const getProductBySku = async (sku, staged, token) => {
     /* Normal product search doesn't support looking by SKU
        Advanced search is only possible in the MerchantCenter
        Thus, we have to use product-projections to find the id, then fetch it through the normal API to make sure we have the latest version
-       (projections have a noticeable delay when we expect multiple updates for the same product, e.g. multiple assets for the same SKU) 
+       (projections have a noticeable delay when we expect multiple updates for the same product, e.g. multiple assets for the same SKU)
     */
     const productMatch = await searchProductBySku(sku, staged, token)
     if (productMatch) {
@@ -379,12 +379,15 @@ const getAssetFromNotification = async (resource_type, publicId) => {
     const {secure_url, metadata, format, tags, context} = assetData;
     const property_sku = process.env['property_sku'];
     const sku = metadata[property_sku];
+    const property_publish = process.env['property_publish'];
+    const publish = metadata[property_publish];
     const name = context?.custom?.caption;
     const description = context?.custom?.alt;
 
     return {
         publicId,
         sku,
+        publish,
         name,
         description,
         secure_url,
@@ -531,16 +534,6 @@ const processOldAsset = async (asset, sku, flag, context) => {
 
 exports.processWebhookNotification = async (body, context) => {
     const resource = body.resources[0]
-    const flag = resource.new_metadata[process.env['property_publish']];
-
-    if (!flag) {
-        return {
-            status: 404,
-            body: {
-                error: 'Publish flag not found'
-            }
-        };
-    }
 
     // Identify the asset
     const {resource_type, publicId, previous_metadata, new_metadata} = body.resources[0];
@@ -551,6 +544,17 @@ exports.processWebhookNotification = async (body, context) => {
             status: 404,
             body: {
                 error: 'Asset not found'
+            }
+        };
+    }
+
+    const flag = asset.publish;
+
+    if (!flag) {
+        return {
+            status: 404,
+            body: {
+                error: 'Publish flag not found'
             }
         };
     }
