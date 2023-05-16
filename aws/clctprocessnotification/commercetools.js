@@ -1,6 +1,6 @@
 const axios = require('axios');
 const AWS = require('aws-sdk');
-const { Buffer } = require("node:buffer");
+const Buffer = require('node:buffer');
 
 const getSecret = async (secretName) => {
     const client = new AWS.SecretsManager({
@@ -54,8 +54,8 @@ const getToken = async () => {
 }
 
 const getProductTypeAttributes = async (id, token) => {
-    const apiUrl = process.env["apiUrl"]
-    const projectKey = process.env["projectKey"]
+    const apiUrl = process.env["apiUrl"];
+    const projectKey = process.env["projectKey"];
 
     const url = `${apiUrl}/${projectKey}/product-types/${id}`;
 
@@ -65,7 +65,7 @@ const getProductTypeAttributes = async (id, token) => {
         },
     });
 
-    const productType = response.data
+    const productType = response.data;
     const attributeNames = productType?.attributes?.map(x => x.name) ?? [];
 
     return attributeNames;
@@ -80,35 +80,35 @@ const getCloudinaryAsset = async (resourceType, publicId) => {
         headers: {
             'Authorization': 'Basic ' + (Buffer.from(cloudApiKey + ':' + cloudApiSecret).toString('base64'))
         }
-    })
+    });
 
     if (response.status === 200) {
         // console.log('getCloudinaryAsset.response', {data: response.data})
-        return response.data
+        return response.data;
     }
 
-    console.log('getCloudinaryAsset.Error', {data: response.data})
-    return undefined
+    console.log('getCloudinaryAsset.Error', {data: response.data});
+    return undefined;
 }
 
 const searchProductBySku = async (sku, staged, token) => {
-    const apiUrl = process.env["apiUrl"]
-    const projectKey = process.env["projectKey"]
+    const apiUrl = process.env["apiUrl"];
+    const projectKey = process.env["projectKey"];
 
-    const url = `${apiUrl}/${projectKey}/product-projections/search?staged=${staged}&filter=variants.sku:${sku}`
+    const url = `${apiUrl}/${projectKey}/product-projections/search?staged=${staged}&filter=variants.sku:${sku}`;
     const response = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    })
+    });
 
     if (response.status === 200) {
-        const products = response.data
-        return products.count === 1 ? products.results[0] : undefined
+        const products = response.data;
+        return products.count === 1 ? products.results[0] : undefined;
     }
 
-    console.log('searchProductBySku.Error', {data: response.data})
-    return undefined
+    console.log('searchProductBySku.Error', {data: response.data});
+    return undefined;
 }
 
 const getProductBySku = async (sku, staged, token) => {
@@ -117,11 +117,11 @@ const getProductBySku = async (sku, staged, token) => {
        Thus, we have to use product-projections to find the id, then fetch it through the normal API to make sure we have the latest version
        (projections have a noticeable delay when we expect multiple updates for the same product, e.g. multiple assets for the same SKU)
     */
-    const productMatch = await searchProductBySku(sku, staged, token)
+    const productMatch = await searchProductBySku(sku, staged, token);
     if (productMatch) {
-        const apiUrl = process.env["apiUrl"]
-        const projectKey = process.env["projectKey"]
-        const id = productMatch.id
+        const apiUrl = process.env["apiUrl"];
+        const projectKey = process.env["projectKey"];
+        const id = productMatch.id;
 
         const url = `${apiUrl}/${projectKey}/products/${id}`;
         const response = await axios.get(url, {
@@ -134,7 +134,7 @@ const getProductBySku = async (sku, staged, token) => {
             const product = response.data;
             //const value = staged ? product.masterData.staged : product.masterData.current
             //We always pick the staged version, so that we do not accidentally duplicate assets that were already staged but not yet published
-            const value = product.masterData.staged
+            const value = product.masterData.staged;
 
             return {
                 ...value,
@@ -143,7 +143,7 @@ const getProductBySku = async (sku, staged, token) => {
                 productType: product.productType,
                 published: product.masterData.published,
                 hasStagedChanges: product.masterData.hasStagedChanges
-            }
+            };
         }
 
         console.log('getProductBySku.Error', {data: response.data});
@@ -153,8 +153,8 @@ const getProductBySku = async (sku, staged, token) => {
 }
 
 const updateProduct = async (product, actions, token, context) => {
-    const apiUrl = process.env["apiUrl"]
-    const projectKey = process.env["projectKey"]
+    const apiUrl = process.env["apiUrl"];
+    const projectKey = process.env["projectKey"];
 
     const url = `${apiUrl}/${projectKey}/products/${product.id}`;
 
@@ -165,12 +165,12 @@ const updateProduct = async (product, actions, token, context) => {
         headers: {
             authorization: `Bearer ${token}`,
         }
-    })
+    });
 
     // If this throws an error 409, that's okay. We're trying to update the same product in parallel, which fails.
     // But the servicebus will pick it up on a second attempt
     const updatedProduct = response.data;
-    context.log('updateProduct', {actions: JSON.stringify(actions)})
+    context.log('updateProduct', {actions: JSON.stringify(actions)});
 
     return updatedProduct;
 }
@@ -254,7 +254,7 @@ const getAssetActions = (product, sku, metadata, assetName, assetDescription, pu
                 action: 'setAssetCustomType',
                 sku,
                 assetId: existingAsset.id,
-                type: {
+                type:{
                     key: ctCustomTypeKey,
                 },
                 fields: {
@@ -312,8 +312,8 @@ const getThumbnailAction = (product, sku, assetName, resourceType, secureUrl) =>
 }
 
 const deleteThumbnailAction = (product, sku, resourceType, secureUrl) => {
-    const transformation = resourceType === 'image' ? 'c_thumb,w_400,h_400' : 'c_thumb,w_400,h_400/f_jpg'
-    const thumbnailUrl = secureUrl.replace('upload/', `upload/${transformation}/`)
+    const transformation = resourceType === 'image' ? 'c_thumb,w_400,h_400' : 'c_thumb,w_400,h_400/f_jpg';
+    const thumbnailUrl = secureUrl.replace('upload/', `upload/${transformation}/`);
 
     // Check if assets exists
     const images = getVariantBySku(product, sku).images ?? [];
@@ -392,7 +392,7 @@ const getAssetFromNotification = async (resource_type, publicId) => {
         return undefined;
     }
 
-    const {secure_url, metadata, format, tags, context} = assetData;
+    const { secure_url, metadata, format, tags, context } = assetData;
     const property_sku = process.env['property_sku'];
     const sku = metadata[property_sku];
     const name = context?.custom?.caption;
@@ -546,7 +546,10 @@ const processOldAsset = async (asset, sku, flag, context) => {
 }
 
 exports.processWebhookNotification = async (body, context) => {
-    const resource = body.resources[0]
+    const resource = body.resources[Object.keys(body.resources)[0]];
+
+    console.log(resource);
+
     const flag = resource.new_metadata[process.env['property_publish']];
 
     if (!flag) {
@@ -559,7 +562,7 @@ exports.processWebhookNotification = async (body, context) => {
     }
 
     // Identify the asset
-    const {resource_type, publicId, previous_metadata, new_metadata} = body.resources[0];
+    const {resource_type, publicId, previous_metadata, new_metadata} = resource;
 
     const asset = await getAssetFromNotification(resource_type, publicId);
     if (!asset) {
@@ -603,7 +606,7 @@ exports.processAddAsset = async (request) => {
         format
     } = await request.json();
 
-    const errors = []
+    const errors = [];
     if (!sku) {
         errors.push('sku missing');
     }
@@ -681,7 +684,7 @@ exports.processAddAsset = async (request) => {
 exports.processDeleteAsset = async (request) => {
     const {sku, token, staged = false, publicId} = await request.json();
 
-    const errors = []
+    const errors = [];
     if (!sku) {
         errors.push('sku missing');
     }
