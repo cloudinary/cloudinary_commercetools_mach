@@ -29,6 +29,8 @@ Parameters:
 Resources:
   clctqueue:
     Type: AWS::SQS::Queue
+    Properties:
+      VisibilityTimeout: 240
 
   clctnotification:
     Type: AWS::Serverless::HttpApi
