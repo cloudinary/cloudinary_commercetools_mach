@@ -65,6 +65,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub "${AWS::StackName}-process"
+      Timeout: 180
       PackageType: Image
       ImageConfig:
         Command:
