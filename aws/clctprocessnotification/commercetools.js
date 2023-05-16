@@ -1,6 +1,6 @@
 const axios = require('axios');
 const AWS = require('aws-sdk');
-const Buffer = require('node:buffer');
+const { Buffer } = require('node:buffer');
 
 const getSecret = async (secretName) => {
     const client = new AWS.SecretsManager({
@@ -586,7 +586,7 @@ exports.processWebhookNotification = async (body, context) => {
 
     // Remove asset/thumbnails from the previous product
     const oldSku = previous_metadata ? previous_metadata[process.env['property_sku']] : '';
-    const newSku = new_metadata[process.env['property_sku']];
+    const newSku = asset.sku;
     if (oldSku && newSku && oldSku !== newSku) {
         result.body.oldAsset = await processOldAsset(asset, oldSku, flag, context);
     }
