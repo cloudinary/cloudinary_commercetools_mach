@@ -1,6 +1,6 @@
 # GCP resources config
 
-Update settings/commercetools.json
+Update scripts/settings/commercetools.json
  - CloudRunName - represents API id, Cloud Run API endpoint for webhook, pushes messages to PUB/SUB topic, hidden behind API Gateway, auth required (internal)
  - CloudRunSubscriberName - represents API id, Cloud Run API for internal use, receives push messages from PUB/SUB, auth required (internal)
  - Topic - PUB/SUB topic id
@@ -16,6 +16,13 @@ Update settings/commercetools.json
  > :warning: **Before running deployment scripts, ensure calling user has necessary permissions: Project IAM Admin rights, Cloud Run Admin for cloud run, Pub/Sub Admin, Secret Manager Admin, Api Gateway Admin**
 
  > :warning: **Before running deploy-step4 (Api Gateway setup), update openapi2-run.yaml with title:CloudRunName and address:url endpoint of CloudRunName**
+
+# Powershell deployment scripts
+
+* `deploy-step1.ps1`
+* `deploy-step2.ps1`
+* `deploy-step3.ps1`
+* `deploy-step4.ps1`
 
  # GCP resources flow
 

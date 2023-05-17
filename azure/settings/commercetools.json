@@ -1,13 +1,13 @@
 {
-    "Subscription": "TR - Seals - Poc",
+    "Subscription": "ABC - DEF",
     "ResourceGroup": "rg-cloudinary-ct",
     "KeyVaultName": "kv-cloudinary-ct9",
-    "ApplicationId": "clct9",
+    "ApplicationId": "abc123",
     "Parameters": "parameters-commercetools.json",
 
-    "cloud_name": "ddsgmism3",
-    "cloud_api_key": "394948657526364",
-    "cloud_api_secret": "UeWpC5ZL3ANXrK-PsafR-z5B9vU",
+    "cloud_name": "abcd123",
+    "cloud_api_key": "123456789",
+    "cloud_api_secret": "abc123DEF$",
     "property_sku": "commercetools_sku",
     "property_publish": "commercetools_publish",
     "property_sort": "sortnumber",
@@ -16,8 +16,8 @@
     "ct_property_sort": "sortNumber",
 
     "authUrl": "https://auth.us-central1.gcp.commercetools.com",
-    "clientId": "td7WFI2gxb7ILd0XS8LcCZIv",
-    "clientSecret": "ipuSX1qwc8OpNKLfnlsVazZnyH_r4Bad",
+    "clientId": "abc123DEF",
+    "clientSecret": "abc123DEF$",
     "apiUrl": "https://api.us-central1.gcp.commercetools.com",
-    "projectKey": "cld_dev"
+    "projectKey": "abc_def"
 }
