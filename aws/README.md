@@ -1,9 +1,11 @@
 # Commercetools Cloudinary MACH integration on AWS
 
-## Installation
-See [link TODO](https://cloudinary.com)
+These instructions walk you through configuring Amazon AWS to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
 
-### TL;DR;
+## Installation
+See [AWS installation documentation](https://cloudinary.com/documentation/commercetools_installation#amazon_aws).
+
+### Next steps
 Create your secrets:
 * `aws secretsmanager create-secret --name cloud-api-secret --secret-string $CloudinaryApiSecret`
 * `aws secretsmanager create-secret --name ct-client-secret --secret-string $CommercetoolsApiSecret`
