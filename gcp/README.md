@@ -1,3 +1,12 @@
+# Commercetools Cloudinary MACH integration on GCP
+
+These instructions walk you through configuring Google Cloud Platform to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
+
+## Installation
+See [GCP installation documentation](https://cloudinary.com/documentation/commercetools_installation#gcp).
+
+### Next steps
+
 # GCP resources config
 
 Update scripts/settings/commercetools.json
