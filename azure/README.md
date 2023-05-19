@@ -7,7 +7,7 @@ See [Azure installation documentation](https://cloudinary.com/documentation/comm
 
 ### Next steps
 
-# GCP resources config
+# AZURE resources config
 
 Update settings/commercetools.json
 
