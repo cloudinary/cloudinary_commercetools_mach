@@ -1,4 +1,4 @@
-# Commercetools Cloudinary MACH integration on AWS
+# commercetools Cloudinary MACH integration on AWS
 
 These instructions walk you through configuring Amazon AWS to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
 
