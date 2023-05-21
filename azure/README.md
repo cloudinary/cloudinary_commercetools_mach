@@ -3,7 +3,7 @@
 These instructions walk you through configuring Microsoft Azure to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
 
 ## Installation
-See [Azure installation documentation](https://cloudinary.com/documentation/commercetools_installation#azure).
+See [Azure installation documentation](https://cloudinary.com/documentation/commercetools_installation#microsoft_azure).
 
 ### Next steps
 
