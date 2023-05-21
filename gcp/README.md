@@ -3,7 +3,7 @@
 These instructions walk you through configuring Google Cloud Platform to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
 
 ## Installation
-See [GCP installation documentation](https://cloudinary.com/documentation/commercetools_installation#gcp).
+See [GCP installation documentation](https://cloudinary.com/documentation/commercetools_installation#google_cloud_platform).
 
 ### Next steps
 
