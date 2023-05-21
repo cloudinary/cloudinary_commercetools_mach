@@ -1,4 +1,4 @@
-# commercetools Cloudinary MACH integration on Azure
+# commercetools Cloudinary MACH extension on Azure
 
 These instructions walk you through configuring Microsoft Azure to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
 
