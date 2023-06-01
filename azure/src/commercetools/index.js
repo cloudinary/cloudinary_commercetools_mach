@@ -62,7 +62,8 @@ const getCloudinaryAsset = async (resourceType, publicId) => {
 
     const response = await axios.get(`https://api.cloudinary.com/v1_1/${cloudName}/resources/${resourceType}/upload/${publicId}`, {
         headers: {
-            'Authorization': 'Basic ' + (Buffer.from(cloudApiKey + ':' + cloudApiSecret).toString('base64'))
+            'Authorization': 'Basic ' + (Buffer.from(cloudApiKey + ':' + cloudApiSecret).toString('base64')),
+            'X-cld-commercetools': 'azure-1.0.0',
         }
     })
 
