@@ -1,9 +1,9 @@
-# Commercetools Cloudinary MACH integration on Azure
+# commercetools Cloudinary MACH extension on Azure
 
 These instructions walk you through configuring Microsoft Azure to host the serverless microservice that integrates Cloudinary assets in your commercetools instance.
 
 ## Installation
-See [Azure installation documentation](https://cloudinary.com/documentation/commercetools_installation#azure).
+See [Azure installation documentation](https://cloudinary.com/documentation/commercetools_installation#microsoft_azure).
 
 ### Next steps
 
@@ -22,17 +22,17 @@ Update settings/commercetools.json
 * cloud_name : the name of your Cloudinary instance
 * cloud_api_key : the apiKey for your Cloudinary instance
 * cloud_api_secret : the apiSecret for your Cloudinary instance
-* property_sku : the name of the Cloudinary property you've chosen to contains the CommerceTools SKU
+* property_sku : the name of the Cloudinary property you've chosen to contains the commercetools SKU
 
-## CommerceTools
+## commercetools
 
-You will get all the values below when you create a new API key in CommerceTools.
+You will get all the values below when you create a new API key in commercetools.
 
-* authUrl : CommerceTools' authUrl (e.g. https://auth.us-central1.gcp.commercetools.com)
-* clientId : CommerceTools' clientId
-* clientSecret : CommerceTools' clientSecret
-* apiUrl : CommerceTools' apiUrl (e.g. https://api.us-central1.gcp.commercetools.com)
-* projectKey :  : CommerceTools' projectKey
+* authUrl : commercetools' authUrl (e.g. https://auth.us-central1.gcp.commercetools.com)
+* clientId : commercetools' clientId
+* clientSecret : commercetools' clientSecret
+* apiUrl : commercetools' apiUrl (e.g. https://api.us-central1.gcp.commercetools.com)
+* projectKey :  commercetools' projectKey
 
 # Powershell deployment scripts
 
